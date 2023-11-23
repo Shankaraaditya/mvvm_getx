@@ -8,9 +8,8 @@ import 'package:mvvm/data/network/base_api_services.dart';
 // you can also write implement (since methods are getting defined anyways)  
 class NetworkApiServices extends BaseApiServices {
 
-
   @override
-  Future<dynamic> getApi(String url)async{
+  Future<dynamic> getApi(String url) async {
 
     if (kDebugMode) {
       print(url);
@@ -25,7 +24,6 @@ class NetworkApiServices extends BaseApiServices {
       throw InternetException('');
     }on RequestTimeOut {
       throw RequestTimeOut('');
-
     }
     print(responseJson);
 
@@ -37,14 +35,13 @@ class NetworkApiServices extends BaseApiServices {
   @override
   Future<dynamic> postApi(var data , String url)async{
 
-    if (kDebugMode) {
+    if (kDebugMode){
       print(url);
       print(data);
     }
 
-    dynamic responseJson ;
+    dynamic responseJson;
     try {
-
       final response = await http.post(Uri.parse(url),
         body: data
       ).timeout( const Duration(seconds: 10));
@@ -61,7 +58,6 @@ class NetworkApiServices extends BaseApiServices {
     return responseJson ;
 
   }
-
 
   dynamic returnResponse(http.Response response){
     switch(response.statusCode){
